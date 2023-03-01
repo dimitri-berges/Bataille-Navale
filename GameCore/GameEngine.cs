@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 
 namespace GameCore
 {
@@ -10,7 +11,7 @@ namespace GameCore
 
         public static GameEngine FromJSON(string json)
         {
-            throw new NotImplementedException();
+            return JsonSerializer.Deserialize<GameEngine>(json);
         }
     }
 }
