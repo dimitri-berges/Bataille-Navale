@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIManager", "APIManager\AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceConsole", "InterfaceConsole\InterfaceConsole.csproj", "{66CE7C8E-DDDC-4275-8B92-6D4020C19626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_GameCore", "Tests_GameCore\Tests_GameCore.csproj", "{7475E415-52E7-464A-86B0-D0E2E7B624CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_GameCore", "Tests_GameCore\Tests_GameCore.csproj", "{7475E415-52E7-464A-86B0-D0E2E7B624CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceMaui", "InterfaceMaui\InterfaceMaui.csproj", "{B88B8E03-9657-492C-8FFB-E05C8A528736}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,12 @@ Global
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88B8E03-9657-492C-8FFB-E05C8A528736}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
