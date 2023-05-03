@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace GameCore
 {
-    public class Board
+    public class Plateau
     {
         public Case[,] Cases { get; private set; }
         public List<Bateau> Bateaux { get; private set; }
 
-        public Board(int nbLignes, int nbColonnes) {
+        public Plateau(int nbLignes, int nbColonnes) {
             Cases = new Case[nbLignes, nbColonnes];
             for (int i = 0; i < nbLignes; i++)
                 for (int j = 0; j < nbColonnes; j++)
                     Cases[i, j] = new(i, j);
         }
+
+        public Plateau(Plateau plateau) : this(plateau.Cases.GetLength(0), plateau.Cases.GetLength(1)) {}
+
+        public Case this[int x, int y] => Cases[x, y];
 
     }
 }
