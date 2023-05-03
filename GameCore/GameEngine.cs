@@ -16,7 +16,15 @@ namespace GameCore
 
         #region Variables de jeu
         public Joueur[] Joueurs { get; set; }
-        public int NumeroJoueurActuel { get; private set; }
+        private int numeroJoueurActuel = 0;
+        public int NumeroJoueurActuel
+        {
+            get { return numeroJoueurActuel; }
+            private set
+            {
+                numeroJoueurActuel = value % Joueurs.Length;
+            }
+        }
         public Joueur JoueurActuel => Joueurs[NumeroJoueurActuel];
         #endregion
 
@@ -35,7 +43,10 @@ namespace GameCore
         #endregion
 
         #region Méthodes
-
+        public void FinDeTour()
+        {
+            NumeroJoueurActuel++;
+        }
         #endregion
     }
 }
