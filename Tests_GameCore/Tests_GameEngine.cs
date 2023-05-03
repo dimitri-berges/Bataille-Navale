@@ -15,6 +15,8 @@ namespace Tests_GameCore
             Assert.Equal(10, gameEngine.nbLignes);
             Assert.Equal(10, gameEngine.nbColonnes);
             Assert.Equal(5, gameEngine.bateaux.Length);
+            Assert.Equal(10, gameEngine.Board.Cases.GetLength(0));
+            Assert.Equal(10, gameEngine.Board.Cases.GetLength(1));
         }
     }
 }

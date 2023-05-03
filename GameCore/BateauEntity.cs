@@ -8,8 +8,8 @@ namespace GameCore
 {
     internal class BateauEntity : Bateau
     {
-        public int x { get; internal set;}
-        public int y { get; internal set;}
+        public int X { get; internal set;}
+        public int Y { get; internal set;}
 
         internal List<Case> cases;
 
