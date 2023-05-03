@@ -48,5 +48,17 @@ namespace GameCore
         {
             return Plateau[x, y].Hit();
         }
+        public HitResponse Tirer(int x, int y, Joueur joueur)
+        {
+            HitResponse hit = joueur.Hit(x, y);
+            PlateauAdverse[x, y].Statut = hit switch
+            {
+                HitResponse.Missed => CaseStatut.WaterHit,
+                HitResponse.Hit => CaseStatut.BoatHit,
+                HitResponse.HitAndDrowned => CaseStatut.BoatDrowned,
+                _ => CaseStatut.WaterHit,
+            };
+            return hit;
+        }
     }
 }
