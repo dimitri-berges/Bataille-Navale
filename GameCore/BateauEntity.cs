@@ -17,5 +17,31 @@ namespace GameCore
         public bool Vertical => vertical;
         public bool Horizontal => !vertical;
 
+        public Boolean BateauHitCheck()
+        {
+            bool Couller = false;
+            int NombreTouches = 0;
+
+            foreach (Case caseCourante in cases)
+            {
+                if (caseCourante.Statut.Equals(CaseStatut.BoatHit))
+                {
+                    NombreTouches++;
+                }
+            }
+
+            if (NombreTouches == this.taille)
+            {
+                Couller = true;
+
+                foreach (Case caseCourante in cases)
+                {
+                    caseCourante.Statut = CaseStatut.BoatDrowned;
+                }
+            }
+
+            return Couller;
+        }
+
     }
 }
