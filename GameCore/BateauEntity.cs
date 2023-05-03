@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameCore
 {
-    internal class BateauEntity : Bateau
+    public class BateauEntity : Bateau
     {
         public int X { get; internal set;}
         public int Y { get; internal set;}
