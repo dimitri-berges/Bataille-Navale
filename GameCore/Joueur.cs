@@ -10,14 +10,43 @@ namespace GameCore
     {
         public Plateau Plateau { get; private set; }
         public Plateau PlateauAdverse { get; private set; }
-        public Bateau[] BateauxDisponibles { get; private set; }
-        public BateauEntity[] Bateaux { get; private set; }
+        public List<Bateau> BateauxDisponibles { get; private set; }
+        public List<BateauEntity> Bateaux { get; private set; }
 
-        public Joueur(Plateau plateau, Bateau[] bateauxDisponibles) {
+        public bool EstPretAJouer => BateauxDisponibles.Count == 0;
+
+        public Joueur(Plateau plateau, List<Bateau> bateauxDisponibles) {
             Plateau = plateau;
             PlateauAdverse = new(plateau);
             BateauxDisponibles = bateauxDisponibles;
-            Bateaux = new BateauEntity[bateauxDisponibles.Length];
+            Bateaux = new();
+        }
+
+        public void PlacerBateau(int x, int y, int indexBateauxDisponibles, bool vertical)
+        {
+            Bateau bateau = BateauxDisponibles[indexBateauxDisponibles];
+            BateauEntity entity = new(x, y, vertical, bateau);
+            for (int i = 0; i < bateau.taille; i++)
+            {
+                if (vertical)
+                {
+                    Plateau[x + i, y].Bateau = entity;
+                    Plateau[x + i, y].Statut = CaseStatut.Boat;
+                    entity.cases[i] = Plateau[x + i, y];
+                } else
+                {
+                    Plateau[x, y + i].Bateau = entity;
+                    Plateau[x, y + i].Statut = CaseStatut.Boat;
+                    entity.cases[i] = Plateau[x, y + i];
+                }
+            }
+            Bateaux.Add(entity);
+            BateauxDisponibles.RemoveAt(indexBateauxDisponibles);
+        }
+
+        public HitResponse Hit(int x, int y)
+        {
+            return Plateau[x, y].Hit();
         }
     }
 }

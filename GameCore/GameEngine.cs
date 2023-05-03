@@ -35,8 +35,8 @@ namespace GameCore
         }
         private GameEngine Initialize()
         {
-            Joueur1 = new(new(nbLignes, nbColonnes), bateaux.ToArray());
-            Joueur2 = new(new(nbLignes, nbColonnes), bateaux.ToArray());
+            Joueur1 = new(new(nbLignes, nbColonnes), bateaux.ToList());
+            Joueur2 = new(new(nbLignes, nbColonnes), bateaux.ToList());
             Joueurs = new Joueur[] { Joueur1, Joueur2 };
             return this;
         }
