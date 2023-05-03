@@ -13,7 +13,9 @@ namespace GameCore
 
         internal List<Case> cases;
 
-        internal bool orientation;
+        internal bool vertical;
+        public bool Vertical => vertical;
+        public bool Horizontal => !vertical;
 
     }
 }
