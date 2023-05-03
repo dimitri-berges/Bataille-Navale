@@ -11,11 +11,23 @@ namespace GameCore
         public int X { get; internal set;}
         public int Y { get; internal set;}
 
-        internal List<Case> cases;
+        internal Case[] cases;
 
         internal bool vertical;
         public bool Vertical => vertical;
         public bool Horizontal => !vertical;
+
+
+
+        public BateauEntity(int x, int y, bool oriantation, Bateau bateau)
+        {
+            this.taille = bateau.taille;
+            this.nom = bateau.nom;
+            this.X = x;
+            this.Y = y;
+            this.vertical = oriantation;
+            cases = new Case[bateau.taille];
+        }
 
         public Boolean BateauHitCheck()
         {
