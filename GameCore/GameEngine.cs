@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.Json;
 
 namespace GameCore
@@ -26,6 +25,7 @@ namespace GameCore
             }
         }
         public Joueur JoueurActuel => Joueurs[NumeroJoueurActuel];
+        public Joueur JoueurAdverse => Joueurs[((NumeroJoueurActuel + 1) % Joueurs.Length)];
         #endregion
 
         #region Initialisation
@@ -43,6 +43,12 @@ namespace GameCore
         #endregion
 
         #region Méthodes
+        public HitResponse Jouer(int x, int y)
+        {
+            if (!(JoueurActuel.EstPretAJouer && JoueurAdverse.EstPretAJouer))
+                throw new System.Exception("Au moins un joueur n'est pas prêt à jouer");
+            return JoueurActuel.Tirer(x, y, JoueurAdverse);
+        }
         public void FinDeTour()
         {
             NumeroJoueurActuel++;
