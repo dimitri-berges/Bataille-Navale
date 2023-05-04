@@ -32,9 +32,12 @@ namespace GameCore
             Bateaux = new();
         }
 
-        public void PlacerBateau(int x, int y, int indexBateauxDisponibles, bool vertical)
+        public bool PlacerBateau(int x, int y, bool vertical, int indexBateauxDisponibles)
         {
             Bateau bateau = BateauxDisponibles[indexBateauxDisponibles];
+            bool placementOK = VerifierPlacementBateau(x, y, vertical, bateau.taille);
+            if (!placementOK)
+                return false;
             BateauEntity entity = new(x, y, vertical, bateau);
             for (int i = 0; i < bateau.taille; i++)
             {
@@ -52,6 +55,30 @@ namespace GameCore
             }
             Bateaux.Add(entity);
             BateauxDisponibles.RemoveAt(indexBateauxDisponibles);
+            return true;
+        }
+
+        public bool VerifierPlacementBateau(int x, int y, bool vertical, int taille)
+        {
+            bool placementValide = true;
+            for (int i = 0; i < taille; i++)
+            {
+                Case @case = vertical ? Plateau[x + i, y] : Plateau[x, y + i];
+                for (int offX = -1; offX <= 1; offX++)
+                {
+                    for (int offY = -1; offY <= 1; offY++)
+                    {
+                        if (@case.x + offX < 0 || @case.x + offX >= Plateau.Cases.GetLength(0)
+                         || @case.y + offY < 0 || @case.y + offY >= Plateau.Cases.GetLength(1))
+                            continue;
+                        placementValide &= Plateau[@case.x + offX, @case.y + offY].Bateau == null;
+                        if (!placementValide) break;
+                    }
+                    if (!placementValide) break;
+                }
+                if (!placementValide) break;
+            }
+            return placementValide;
         }
 
         public HitResponse Hit(int x, int y)
