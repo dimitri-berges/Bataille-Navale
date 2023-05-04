@@ -14,6 +14,16 @@ namespace GameCore
         public List<BateauEntity> Bateaux { get; private set; }
 
         public bool EstPretAJouer => BateauxDisponibles.Count == 0;
+        public bool IsAlive { get
+            {
+                bool allBoatsDrowned = true;
+                foreach (BateauEntity bateau in Bateaux)
+                {
+                    allBoatsDrowned &= bateau.IsDrowned;
+                }
+                return !allBoatsDrowned;
+            }
+        }
 
         public Joueur(Plateau plateau, List<Bateau> bateauxDisponibles) {
             Plateau = plateau;

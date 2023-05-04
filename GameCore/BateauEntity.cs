@@ -17,6 +17,8 @@ namespace GameCore
         public bool Vertical => vertical;
         public bool Horizontal => !vertical;
 
+        public bool IsDrowned { get; private set; }
+
 
 
         public BateauEntity(int x, int y, bool oriantation, Bateau bateau)
@@ -26,12 +28,12 @@ namespace GameCore
             this.X = x;
             this.Y = y;
             this.vertical = oriantation;
+            this.IsDrowned = false;
             cases = new Case[bateau.taille];
         }
 
-        public Boolean BateauHitCheck()
+        public bool BateauHitCheck()
         {
-            bool Couller = false;
             int NombreTouches = 0;
 
             foreach (Case caseCourante in cases)
@@ -44,7 +46,7 @@ namespace GameCore
 
             if (NombreTouches == this.taille)
             {
-                Couller = true;
+                IsDrowned = true;
 
                 foreach (Case caseCourante in cases)
                 {
@@ -52,7 +54,7 @@ namespace GameCore
                 }
             }
 
-            return Couller;
+            return IsDrowned;
         }
 
     }
