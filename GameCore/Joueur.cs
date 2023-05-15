@@ -43,14 +43,14 @@ namespace GameCore
             {
                 if (vertical)
                 {
-                    Plateau[x + i, y].Bateau = entity;
-                    Plateau[x + i, y].Statut = CaseStatut.Boat;
-                    entity.cases[i] = Plateau[x + i, y];
-                } else
-                {
                     Plateau[x, y + i].Bateau = entity;
                     Plateau[x, y + i].Statut = CaseStatut.Boat;
                     entity.cases[i] = Plateau[x, y + i];
+                } else
+                {
+                    Plateau[x + i, y].Bateau = entity;
+                    Plateau[x + i, y].Statut = CaseStatut.Boat;
+                    entity.cases[i] = Plateau[x + i, y];
                 }
             }
             Bateaux.Add(entity);
@@ -63,7 +63,7 @@ namespace GameCore
             bool placementValide = true;
             for (int i = 0; i < taille; i++)
             {
-                Case @case = vertical ? Plateau[x + i, y] : Plateau[x, y + i];
+                Case @case = vertical ? Plateau[x, y + i] : Plateau[x + i, y];
                 for (int offX = -1; offX <= 1; offX++)
                 {
                     for (int offY = -1; offY <= 1; offY++)
