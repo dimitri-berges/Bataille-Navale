@@ -12,11 +12,14 @@ namespace GameCore
         public int x, y;
         internal BateauEntity? Bateau { get; set; }
 
+        public CaseBoatType BoatType { get; set; }
+
         public Case(int x, int y) {
             Statut = CaseStatut.Water;
             this.x = x;
             this.y = y;
             Bateau = null;
+            BoatType = CaseBoatType.None;
         }
 
         internal HitResponse Hit()

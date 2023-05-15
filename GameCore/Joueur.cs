@@ -39,17 +39,20 @@ namespace GameCore
             if (!placementOK)
                 return false;
             BateauEntity entity = new(x, y, vertical, bateau);
+            Plateau[x, y].BoatType = vertical ? CaseBoatType.EdgeUp : CaseBoatType.EdgeLeft;
             for (int i = 0; i < bateau.taille; i++)
             {
                 if (vertical)
                 {
                     Plateau[x, y + i].Bateau = entity;
                     Plateau[x, y + i].Statut = CaseStatut.Boat;
+                    Plateau[x, y + i].BoatType = i < bateau.taille - 1 ? CaseBoatType.Vertical : CaseBoatType.EdgeDown;
                     entity.cases[i] = Plateau[x, y + i];
                 } else
                 {
                     Plateau[x + i, y].Bateau = entity;
                     Plateau[x + i, y].Statut = CaseStatut.Boat;
+                    Plateau[x + i, y].BoatType = i < bateau.taille - 1 ? CaseBoatType.Horizontal : CaseBoatType.EdgeRight;
                     entity.cases[i] = Plateau[x + i, y];
                 }
             }
