@@ -54,5 +54,17 @@ namespace GameCore
             NumeroJoueurActuel++;
         }
         #endregion
+
+        #region Attributs et méthodes statiques
+        public static readonly char[] Alphabet = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+        public static char GetColonne(int index) => Alphabet[index];
+        public static int GetIndexOfColonne(char lettre) => Alphabet.ToList().IndexOf(lettre);
+
+        public static int GetLigne(int index) => index + 1;
+        public static int GetIndexOfLigne(int ligne) => ligne - 1;
+
+        public static string GetCoords(int x, int y) => $"{GetColonne(x)}{GetLigne(y)}";
+        #endregion
     }
 }
