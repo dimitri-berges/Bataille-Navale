@@ -39,7 +39,6 @@ namespace GameCore
             if (!placementOK)
                 return false;
             BateauEntity entity = new(x, y, vertical, bateau);
-            Plateau[x, y].BoatType = vertical ? CaseBoatType.EdgeUp : CaseBoatType.EdgeLeft;
             for (int i = 0; i < bateau.taille; i++)
             {
                 if (vertical)
@@ -55,6 +54,8 @@ namespace GameCore
                     Plateau[x + i, y].BoatType = i < bateau.taille - 1 ? CaseBoatType.Horizontal : CaseBoatType.EdgeRight;
                     entity.cases[i] = Plateau[x + i, y];
                 }
+                if (i == 0)
+                    Plateau[x, y].BoatType = vertical ? CaseBoatType.EdgeUp : CaseBoatType.EdgeLeft;
             }
             Bateaux.Add(entity);
             BateauxDisponibles.RemoveAt(indexBateauxDisponibles);
@@ -98,7 +99,29 @@ namespace GameCore
                 HitResponse.HitAndDrowned => CaseStatut.BoatDrowned,
                 _ => CaseStatut.WaterHit,
             };
+            if (hit == HitResponse.HitAndDrowned)
+            {
+                HitAndDrowned(x, y);
+            }
             return hit;
+        }
+
+        public void HitAndDrowned(int x, int y)
+        {
+            for (int offX = -1; offX <= 1; offX++)
+            {
+                for (int offY = -1; offY <= 1; offY++)
+                {
+                    if (x + offX < 0 || x + offX >= PlateauAdverse.Cases.GetLength(0)
+                         || y + offY < 0 || y + offY >= PlateauAdverse.Cases.GetLength(1))
+                        continue;
+                    if (PlateauAdverse[x + offX, y + offY].Statut == CaseStatut.BoatHit)
+                    {
+                        PlateauAdverse[x + offX, y + offY].Statut = CaseStatut.BoatDrowned;
+                        HitAndDrowned(x + offX, y + offY);
+                    }
+                }
+            }
         }
     }
 }
