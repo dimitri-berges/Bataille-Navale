@@ -39,13 +39,17 @@ namespace Tests_GameCore
 
             Assert.Equal(HitResponse.Hit, gameEngine.Jouer(8, 0));
             Assert.Equal(CaseStatut.BoatHit, gameEngine.JoueurAdverse.Plateau[8, 0].Statut);
+            Assert.Equal(CaseStatut.BoatHit, gameEngine.JoueurActuel.PlateauAdverse[8, 0].Statut);
 
             Assert.Equal(HitResponse.Missed, gameEngine.Jouer(9, 0));
             Assert.Equal(CaseStatut.WaterHit, gameEngine.JoueurAdverse.Plateau[9, 0].Statut);
+            Assert.Equal(CaseStatut.WaterHit, gameEngine.JoueurActuel.PlateauAdverse[9, 0].Statut);
 
             Assert.Equal(HitResponse.HitAndDrowned, gameEngine.Jouer(8, 1));
             Assert.Equal(CaseStatut.BoatDrowned, gameEngine.JoueurAdverse.Plateau[8, 1].Statut);
             Assert.Equal(CaseStatut.BoatDrowned, gameEngine.JoueurAdverse.Plateau[8, 0].Statut);
+            Assert.Equal(CaseStatut.BoatDrowned, gameEngine.JoueurActuel.PlateauAdverse[8, 1].Statut);
+            Assert.Equal(CaseStatut.BoatDrowned, gameEngine.JoueurActuel.PlateauAdverse[8, 0].Statut);
 
         }
 
