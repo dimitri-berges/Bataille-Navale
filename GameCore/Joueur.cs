@@ -67,6 +67,8 @@ namespace GameCore
             bool placementValide = true;
             for (int i = 0; i < taille; i++)
             {
+                if (vertical ? y + i >= Plateau.Cases.GetLength(1) : x + i >= Plateau.Cases.GetLength(0))
+                    return false;
                 Case @case = vertical ? Plateau[x, y + i] : Plateau[x + i, y];
                 for (int offX = -1; offX <= 1; offX++)
                 {
