@@ -32,6 +32,10 @@ namespace GameCore
                 case CaseStatut.Boat:
                     Statut = CaseStatut.BoatHit;
                     return Bateau.BateauHitCheck() ? HitResponse.HitAndDrowned : HitResponse.Hit;
+                case CaseStatut.BoatHit:
+                    return HitResponse.Hit;
+                case CaseStatut.BoatDrowned:
+                    return HitResponse.HitAndDrowned;
                 default:
                     return HitResponse.Missed;
             }

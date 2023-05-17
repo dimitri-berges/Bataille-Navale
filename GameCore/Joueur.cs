@@ -39,7 +39,6 @@ namespace GameCore
             if (!placementOK)
                 return false;
             BateauEntity entity = new(x, y, vertical, bateau);
-            Plateau[x, y].BoatType = vertical ? CaseBoatType.EdgeUp : CaseBoatType.EdgeLeft;
             for (int i = 0; i < bateau.taille; i++)
             {
                 if (vertical)
@@ -55,6 +54,8 @@ namespace GameCore
                     Plateau[x + i, y].BoatType = i < bateau.taille - 1 ? CaseBoatType.Horizontal : CaseBoatType.EdgeRight;
                     entity.cases[i] = Plateau[x + i, y];
                 }
+                if (i == 0)
+                    Plateau[x, y].BoatType = vertical ? CaseBoatType.EdgeUp : CaseBoatType.EdgeLeft;
             }
             Bateaux.Add(entity);
             BateauxDisponibles.RemoveAt(indexBateauxDisponibles);
@@ -66,13 +67,15 @@ namespace GameCore
             bool placementValide = true;
             for (int i = 0; i < taille; i++)
             {
+                if (vertical ? y + i >= Plateau.nbLignes : x + i >= Plateau.nbColonnes)
+                    return false;
                 Case @case = vertical ? Plateau[x, y + i] : Plateau[x + i, y];
                 for (int offX = -1; offX <= 1; offX++)
                 {
                     for (int offY = -1; offY <= 1; offY++)
                     {
-                        if (@case.x + offX < 0 || @case.x + offX >= Plateau.Cases.GetLength(0)
-                         || @case.y + offY < 0 || @case.y + offY >= Plateau.Cases.GetLength(1))
+                        if (@case.x + offX < 0 || @case.x + offX >= Plateau.nbColonnes
+                         || @case.y + offY < 0 || @case.y + offY >= Plateau.nbLignes)
                             continue;
                         placementValide &= Plateau[@case.x + offX, @case.y + offY].Bateau == null;
                         if (!placementValide) break;
@@ -98,7 +101,29 @@ namespace GameCore
                 HitResponse.HitAndDrowned => CaseStatut.BoatDrowned,
                 _ => CaseStatut.WaterHit,
             };
+            if (hit == HitResponse.HitAndDrowned)
+            {
+                HitAndDrowned(x, y);
+            }
             return hit;
+        }
+
+        public void HitAndDrowned(int x, int y)
+        {
+            for (int offX = -1; offX <= 1; offX++)
+            {
+                for (int offY = -1; offY <= 1; offY++)
+                {
+                    if (x + offX < 0 || x + offX >= PlateauAdverse.nbColonnes
+                         || y + offY < 0 || y + offY >= PlateauAdverse.nbLignes)
+                        continue;
+                    if (PlateauAdverse[x + offX, y + offY].Statut == CaseStatut.BoatHit)
+                    {
+                        PlateauAdverse[x + offX, y + offY].Statut = CaseStatut.BoatDrowned;
+                        HitAndDrowned(x + offX, y + offY);
+                    }
+                }
+            }
         }
     }
 }
