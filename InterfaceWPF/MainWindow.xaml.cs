@@ -24,5 +24,11 @@ namespace InterfaceWPF
         {
             InitializeComponent();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            InitGame w = new InitGame();
+            w.Show();
+            this.Close();
+        }
     }
 }
