@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceConsole", "Interfa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_GameCore", "Tests_GameCore\Tests_GameCore.csproj", "{7475E415-52E7-464A-86B0-D0E2E7B624CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceWPF", "InterfaceWPF\InterfaceWPF.csproj", "{1DF83C5A-D40F-4FE2-B47C-B311E02E783E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7475E415-52E7-464A-86B0-D0E2E7B624CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DF83C5A-D40F-4FE2-B47C-B311E02E783E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF83C5A-D40F-4FE2-B47C-B311E02E783E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF83C5A-D40F-4FE2-B47C-B311E02E783E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF83C5A-D40F-4FE2-B47C-B311E02E783E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
