@@ -27,16 +27,16 @@ namespace InterfaceConsole
         };
         public static readonly Dictionary<char, string> markupsDeChars = new()
         {
-            {'.', "[aqua].[/]" },
-            {'X', "[blue]X[/]" },
-            {'+', "[red]+[/]" },
-            {'#', "[red]#[/]" },
-            {'A', "[yellow]A[/]" },
-            {'V', "[yellow]V[/]" },
-            {'<', "[yellow]<[/]" },
-            {'>', "[yellow]>[/]" },
-            {'|', "[yellow]|[/]" },
-            {'-', "[yellow]-[/]" },
+            {statutsDeCase[CaseStatut.Water], $"[aqua]{statutsDeCase[CaseStatut.Water]}[/]" },
+            {statutsDeCase[CaseStatut.WaterHit], $"[blue]{statutsDeCase[CaseStatut.WaterHit]}[/]" },
+            {statutsDeCase[CaseStatut.BoatHit], $"[darkorange]{statutsDeCase[CaseStatut.BoatHit]}[/]" },
+            {statutsDeCase[CaseStatut.BoatDrowned], $"[red]{statutsDeCase[CaseStatut.BoatDrowned]}[/]" },
+            {typesDeBateau[CaseBoatType.EdgeUp], $"[yellow]{typesDeBateau[CaseBoatType.EdgeUp]}[/]" },
+            {typesDeBateau[CaseBoatType.EdgeDown], $"[yellow]{typesDeBateau[CaseBoatType.EdgeDown]}[/]" },
+            {typesDeBateau[CaseBoatType.EdgeLeft], $"[yellow]{typesDeBateau[CaseBoatType.EdgeLeft]}[/]" },
+            {typesDeBateau[CaseBoatType.EdgeRight], $"[yellow]{typesDeBateau[CaseBoatType.EdgeRight]}[/]" },
+            {typesDeBateau[CaseBoatType.Vertical], $"[yellow]{typesDeBateau[CaseBoatType.Vertical]}[/]" },
+            {typesDeBateau[CaseBoatType.Horizontal], $"[yellow]{typesDeBateau[CaseBoatType.Horizontal]}[/]" },
         };
         public static int NbDigits(int value)
         {
