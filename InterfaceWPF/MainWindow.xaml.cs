@@ -26,7 +26,16 @@ namespace InterfaceWPF
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            InitGame w = new InitGame();
+            InitGame w;
+            try
+            {
+                w = new();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur de connexion");
+                return;
+            }
             w.Show();
             this.Close();
         }
