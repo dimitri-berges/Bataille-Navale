@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfaceWPF"
         mc:Ignorable="d"
-        Title="InitGame" Height="450" Width="800">
+        Title="Bataille du café - E6O - Jeu" Height="720" Width="1024" WindowState="Maximized" SizeChanged="Window_SizeChanged" ContentRendered="Window_ContentRendered">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="GridPlayer" Margin="8" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid x:Name="GridOther" Margin="8" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
     </Grid>
 </Window>
