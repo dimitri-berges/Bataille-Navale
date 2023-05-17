@@ -40,7 +40,7 @@ namespace InterfaceConsole
             for (int i = 0; i < marginLeft - Utils.NbDigits(numeroDeLigne); i++) stringBuilder.Append(' ');
             stringBuilder.Append(numeroDeLigne);
             stringBuilder.Append(' ');
-            for (int x = 0; x < joueur.Plateau.Cases.GetLength(0); x++)
+            for (int x = 0; x < joueur.Plateau.nbColonnes; x++)
             {
                 stringBuilder.Append(Utils.GetMarkupForChar(Utils.GetCharOfCase(joueur.Plateau[x, ligne])));
                 stringBuilder.Append(' ');
@@ -48,7 +48,7 @@ namespace InterfaceConsole
             for (int i = 0; i < marginLeft; i++) stringBuilder.Append(' ');
             for (int i = 0; i <= marginLeft; i++) stringBuilder.Append(' ');
 
-            for (int x = 0; x < joueur.PlateauAdverse.Cases.GetLength(0); x++)
+            for (int x = 0; x < joueur.PlateauAdverse.nbColonnes; x++)
             {
                 stringBuilder.Append(Utils.GetMarkupForChar(Utils.GetCharOfCase(joueur.PlateauAdverse[x, ligne])));
                 stringBuilder.Append(' ');
@@ -59,11 +59,11 @@ namespace InterfaceConsole
         }
         public static void AfficherPlateau(Joueur joueur)
         {
-            int marginLeft = Utils.NbDigits(joueur.Plateau.Cases.GetLength(1));
-            AfficherLettresColonne(marginLeft, joueur.Plateau.Cases.GetLength(0));
-            for (int i = 0; i < joueur.Plateau.Cases.GetLength(1); i++)
+            int marginLeft = Utils.NbDigits(joueur.Plateau.nbLignes);
+            AfficherLettresColonne(marginLeft, joueur.Plateau.nbColonnes);
+            for (int i = 0; i < joueur.Plateau.nbLignes; i++)
                 AfficherLignePlateau(marginLeft, joueur, i);
-            AfficherLettresColonne(marginLeft, joueur.Plateau.Cases.GetLength(0));
+            AfficherLettresColonne(marginLeft, joueur.Plateau.nbColonnes);
             AnsiConsole.WriteLine(" ");
         }
         public static void Exit()
@@ -75,7 +75,7 @@ namespace InterfaceConsole
             int index_colonne;
             SelectionPrompt<int> prompt_colonne = new SelectionPrompt<int>()
                                             .Title(fire ? "Dans quelle colonne voulez-vous tirer ?" : "À partir de quelle colonne voulez-vous le placer ? (Sens de gauche à droite ou de haut en bas)")
-                                            .AddChoices(Enumerable.Range(0, joueur.Plateau.Cases.GetLength(0) - limit));
+                                            .AddChoices(Enumerable.Range(0, joueur.Plateau.nbColonnes - limit));
             prompt_colonne.Converter = i => GameEngine.GetColonne(i).ToString();
             index_colonne = AnsiConsole.Prompt(prompt_colonne);
             return index_colonne;
@@ -85,7 +85,7 @@ namespace InterfaceConsole
             int index_ligne;
             SelectionPrompt<int> prompt_ligne = new SelectionPrompt<int>()
                                             .Title(fire ? "Dans quelle ligne voulez-vous tirer ?" : "À partir de quelle ligne voulez-vous le placer ? (Sens de gauche à droite ou de haut en bas)")
-                                            .AddChoices(Enumerable.Range(0, joueur.Plateau.Cases.GetLength(1) - limit));
+                                            .AddChoices(Enumerable.Range(0, joueur.Plateau.nbLignes - limit));
             prompt_ligne.Converter = i => GameEngine.GetLigne(i).ToString();
             index_ligne = AnsiConsole.Prompt(prompt_ligne);
             return index_ligne;

@@ -67,15 +67,15 @@ namespace GameCore
             bool placementValide = true;
             for (int i = 0; i < taille; i++)
             {
-                if (vertical ? y + i >= Plateau.Cases.GetLength(1) : x + i >= Plateau.Cases.GetLength(0))
+                if (vertical ? y + i >= Plateau.nbLignes : x + i >= Plateau.nbColonnes)
                     return false;
                 Case @case = vertical ? Plateau[x, y + i] : Plateau[x + i, y];
                 for (int offX = -1; offX <= 1; offX++)
                 {
                     for (int offY = -1; offY <= 1; offY++)
                     {
-                        if (@case.x + offX < 0 || @case.x + offX >= Plateau.Cases.GetLength(0)
-                         || @case.y + offY < 0 || @case.y + offY >= Plateau.Cases.GetLength(1))
+                        if (@case.x + offX < 0 || @case.x + offX >= Plateau.nbColonnes
+                         || @case.y + offY < 0 || @case.y + offY >= Plateau.nbLignes)
                             continue;
                         placementValide &= Plateau[@case.x + offX, @case.y + offY].Bateau == null;
                         if (!placementValide) break;
@@ -114,8 +114,8 @@ namespace GameCore
             {
                 for (int offY = -1; offY <= 1; offY++)
                 {
-                    if (x + offX < 0 || x + offX >= PlateauAdverse.Cases.GetLength(0)
-                         || y + offY < 0 || y + offY >= PlateauAdverse.Cases.GetLength(1))
+                    if (x + offX < 0 || x + offX >= PlateauAdverse.nbColonnes
+                         || y + offY < 0 || y + offY >= PlateauAdverse.nbLignes)
                         continue;
                     if (PlateauAdverse[x + offX, y + offY].Statut == CaseStatut.BoatHit)
                     {
